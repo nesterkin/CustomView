@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -68,11 +67,7 @@ public class CustomView extends View {
                     y = eventY - dragY;
 
                     mPaint.setARGB(255, mRandom.nextInt(), mRandom.nextInt(), mRandom.nextInt());
-                    for (int i = 0; i < ((ViewGroup) getParent()).getChildCount(); i++) {
-                        if (((ViewGroup) getParent()).getChildAt(i).getId() == mReference) {
-                            mTextView = (TextView) ((ViewGroup) getParent()).getChildAt(i);
-                        }
-                    }
+                    mTextView = getRootView().findViewById(mReference);
                     mTextView.setText("x = " + x + " y = " + y);
 
                     invalidate();
